@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.9 on win32)" generated="20240626 13:16:19.642" rpa="false" schemaversion="3">
+<suite id="s1" name="RobotFramework API" source="D:\QA et Automatisation\Testing Auto\robotFramework\RobotFramework_API">
+<suite id="s1-s1" name="TestCases" source="D:\QA et Automatisation\Testing Auto\robotFramework\RobotFramework_API\TestCases">
+<suite id="s1-s1-s1" name="TC11 GoogleMapApi" source="D:\QA et Automatisation\Testing Auto\robotFramework\RobotFramework_API\TestCases\TC11_GoogleMapApi.robot">
+<test id="s1-s1-s1-t1" name="GoogleMapPlacesAPITC" line="11">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240626 13:16:19.881" level="INFO">Creating Session using : alias=mysession, url=https://maps.googleapis.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240626 13:16:19.881" endtime="20240626 13:16:19.881"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>location=-33.8670522,151.1957362</arg>
+<arg>radius=500</arg>
+<arg>types=food</arg>
+<arg>name=harbour</arg>
+<arg>key=AIzaSyDcb1GvPUeXMMJrcj1y_3JffH6LkS0ittU</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240626 13:16:19.881" level="INFO">${params} = {'location': '-33.8670522,151.1957362', 'radius': '500', 'types': 'food', 'name': 'harbour', 'key': 'AIzaSyDcb1GvPUeXMMJrcj1y_3JffH6LkS0ittU'}</msg>
+<status status="PASS" starttime="20240626 13:16:19.881" endtime="20240626 13:16:19.881"/>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${req_url}</arg>
+<arg>params=${params}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<msg timestamp="20240626 13:16:19.890" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20240626 13:16:20.200" level="INFO">GET Request : url=https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=-33.8670522%2C151.1957362&amp;radius=500&amp;types=food&amp;name=harbour&amp;key=AIzaSyDcb1GvPUeXMMJrcj1y_3JffH6LkS0ittU 
+ path_url=/maps/api/place/nearbysearch/xml?location=-33.8670522%2C151.1957362&amp;radius=500&amp;types=food&amp;name=harbour&amp;key=AIzaSyDcb1GvPUeXMMJrcj1y_3JffH6LkS0ittU 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20240626 13:16:20.200" level="INFO">GET Response : url=https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=-33.8670522%2C151.1957362&amp;radius=500&amp;types=food&amp;name=harbour&amp;key=AIzaSyDcb1GvPUeXMMJrcj1y_3JffH6LkS0ittU 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/xml; charset=UTF-8', 'Date': 'Wed, 26 Jun 2024 12:16:16 GMT', 'Pragma': 'no-cache', 'Expires': 'Fri, 01 Jan 1990 00:00:00 GMT', 'Cache-Control': 'no-cache, must-revalidate', 'Vary': 'Accept-Language', 'Server': 'scaffolding on HTTPServer2', 'Content-Length': '327', 'X-XSS-Protection': '0', 'X-Frame-Options': 'SAMEORIGIN', 'Server-Timing': 'gfet4t7; dur=9', 'Alt-Svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'} 
+ body=&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;PlaceSearchResponse&gt;
+ &lt;status&gt;REQUEST_DENIED&lt;/status&gt;
+ &lt;error_message&gt;You must enable Billing on the Google Cloud Project at https://console.cloud.google.com/project/_/billing/enable Learn more at https://developers.google.com/maps/gmp-get-started&lt;/error_message&gt;
+&lt;/PlaceSearchResponse&gt;
+ 
+ </msg>
+<msg timestamp="20240626 13:16:20.200" level="INFO">C:\Users\AYMEN\AppData\Roaming\Python\Python39\site-packages\urllib3\connectionpool.py:1045: InsecureRequestWarning: Unverified HTTPS request is being made to host 'maps.googleapis.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20240626 13:16:20.200" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240626 13:16:19.881" endtime="20240626 13:16:20.200"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240626 13:16:20.205" endtime="20240626 13:16:20.205"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240626 13:16:20.205" endtime="20240626 13:16:20.211"/>
+</kw>
+<status status="PASS" starttime="20240626 13:16:19.881" endtime="20240626 13:16:20.214"/>
+</test>
+<status status="PASS" starttime="20240626 13:16:19.700" endtime="20240626 13:16:20.215"/>
+</suite>
+<status status="PASS" starttime="20240626 13:16:19.691" endtime="20240626 13:16:20.221"/>
+</suite>
+<status status="PASS" starttime="20240626 13:16:19.650" endtime="20240626 13:16:20.228"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="RobotFramework API">RobotFramework API</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="TestCases">RobotFramework API.TestCases</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="TC11 GoogleMapApi">RobotFramework API.TestCases.TC11 GoogleMapApi</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20240626 13:16:19.890" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>
